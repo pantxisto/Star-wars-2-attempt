@@ -1,0 +1,10 @@
+<h1>Ships</h1>
+
+<app-starships-list
+  [starships]="starships"
+  (fetchNext)="fetchNext($event)"
+></app-starships-list>
+
+<div class="alert alert-danger" role="alert" *ngIf="error">
+  Ha habido un error al hacer la petición
+</div>

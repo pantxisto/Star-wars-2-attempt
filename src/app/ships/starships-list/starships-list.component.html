@@ -1,0 +1,7 @@
+<div class="ships">
+  <div class="row">
+      <app-starship *ngFor="let item of starships" [starship]="item" class="col-xs-6 col-sm-6 col-md-3"></app-starship>
+  </div>
+</div>
+
+<button (click)="fetchNextPage()" class="btn btn-primary">Más datos</button>
