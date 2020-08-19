@@ -8,7 +8,8 @@ import { StarshipModel } from './starship/starship.model';
 })
 export class StarshipsListComponent implements OnInit {
   @Input() starships: StarshipModel[];
-  @Output() fetchNext = new EventEmitter<string>();;
+  @Input() disableButton: boolean;
+  @Output() fetchNext = new EventEmitter<string>();
   constructor() {}
 
   ngOnInit(): void {

@@ -8,6 +8,7 @@ import { ShipsComponent } from './ships.component';
 import { StarshipsListComponent } from './starships-list/starships-list.component';
 import { StarshipComponent } from './starships-list/starship/starship.component';
 import { ShipsInterceptor } from './ships-interceptor.interceptor';
+import { ShipImageDirective } from './starships-list/starship/ship-image.directive';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ShipsInterceptor } from './ships-interceptor.interceptor';
     StarshipsListComponent,
     StarshipComponent,
     ImageSanitizerPipe,
+    ShipImageDirective,
   ],
   imports: [CommonModule, ShipsRoutingModule, HttpClientModule],
   providers: [

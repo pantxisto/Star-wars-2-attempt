@@ -13,12 +13,16 @@ export class ShipsComponent implements OnInit {
   error: boolean;
   starships: StarshipModel[];
   lastResponse: {};
+  disableButton: boolean;
+  fetching: boolean;
   constructor(private shipsService: ShipsService) {}
 
   ngOnInit(): void {
     this.error;
     this.starships = [];
     this.lastResponse = {};
+    this.disableButton = false;
+    this.fetching = false;
     this.shipsService
       .GetStarships(null)
       .pipe(catchError((error) => of({ error: true, message: error })))
@@ -35,7 +39,8 @@ export class ShipsComponent implements OnInit {
   }
 
   fetchNext(message: string) {
-    if (message === 'FetchNext') {
+    if (message === 'FetchNext' && !this.fetching) {
+      this.fetching = true;
       var url = this.lastResponse ? this.lastResponse['next'] : null;
       this.shipsService
         .GetStarships(url)
@@ -48,7 +53,11 @@ export class ShipsComponent implements OnInit {
               this.createStarshipsModelArray(response)
             );
             this.lastResponse = response;
+            if (response['next'] === null) {
+              this.disableButton = true;
+            }
           }
+          this.fetching = false;
         });
     }
   }
