@@ -1,26 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-a {
-  cursor: pointer;
-}
+@import  "./sass/abstracts/variables";
 
-.ship .panel-body img {
-  max-width: 100%;
-  object-fit: cover;
-}
+@import "./sass/base/base";
+@import "./sass/base/typography";
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 992px) {
-  .panel-heading {
-      min-height: 72px;
-      height: 58px;
-  }
-}
-
-@media (min-width: 992px){
-  .container {
-      width: 750px;
-  }
-}
+@import "./sass/layout/general";

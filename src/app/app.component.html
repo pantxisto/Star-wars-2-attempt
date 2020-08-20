@@ -1,9 +1,10 @@
 <div class="container">
   <!-- As a link -->
   <div class="col-sm-12">
+    <app-navbar></app-navbar>
     <div
       [ngClass]="{
-        'alert': flash,
+        alert: flash,
         'alert-success': flash.type === 'success',
         'alert-danger': flash.type === 'error'
       }"

@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { CookieService } from 'ngx-cookie-service';
 import * as moment from 'moment';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
   globals: {};
+  loginSubject = new Subject<boolean>();
   constructor(
     private cookieService: CookieService,
     private UserService: UserService
@@ -49,19 +51,17 @@ export class AuthenticationService {
       },
     };
 
-    // set default auth header for http requests
-
-    // $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-
     // store user details in globals cookie that keeps user logged in for 1 week (or until they logout)
     var cookieExp = moment();
     cookieExp.add(7, 'd');
     this.cookieService.set('globals', JSON.stringify(this.globals), cookieExp.toDate());
+
+    this.loginSubject.next(true);
   }
 
   ClearCredentials() {
     this.globals = {};
     this.cookieService.delete('globals');
-    // $http.defaults.headers.common.Authorization = 'Basic';
+    this.loginSubject.next(false);
   }
 }

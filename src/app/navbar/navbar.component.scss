@@ -1,0 +1,54 @@
+.navBar {
+  &__bar {
+    margin: 2rem 0;
+    @media (min-width: 992px) {
+      & {
+      }
+    }
+  }
+
+  &__logo-box {
+    &:hover {
+    }
+  }
+
+  &__logo {
+    max-width: 100%;
+  }
+
+  &__buttons {
+    display: table;
+    @media (min-width: 992px) {
+      & {
+      }
+    }
+  }
+
+  &__link {
+    display: table-cell;
+    text-align: center;
+    &:first-child {
+      width: 40%;
+      @media (min-width: 992px) {
+        & {
+          text-align: left;
+        }
+      }
+    }
+    &:nth-child(2) {
+      width: 20%;
+    }
+    &:nth-child(3) {
+      width: 40%;
+      @media (min-width: 992px) {
+        & {
+          text-align: right;
+        }
+      }
+    }
+
+    &:hover {
+
+    }
+  }
+}

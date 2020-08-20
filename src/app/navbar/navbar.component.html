@@ -1,0 +1,23 @@
+<div class="navBar__bar" *ngIf="isAuthenticated">
+  <div class="navBar__buttons">
+    <a
+      class="navBar__link"
+      [routerLink]="['/ships']"
+      routerLinkActive="active-link"
+      >Naves</a
+    >
+    <a
+      class="navBar__link"
+      [routerLink]="['/logo']"
+      routerLinkActive="active-link"
+      ><div class="navBar__logo-box">
+        <img src="../../assets/logo.png" alt="Logo" class="navBar__logo" /></div
+    ></a>
+    <a
+      class="navBar__link"
+      [routerLink]="['/login']"
+      routerLinkActive="active-link"
+      >Cerrar sesión</a
+    >
+  </div>
+</div>

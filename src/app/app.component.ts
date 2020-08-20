@@ -13,7 +13,10 @@ export class AppComponent implements OnInit, OnDestroy {
   flash: { message: string; type: string; keepAfterLocationChange: boolean };
   flashSubscription: Subscription;
   routerSubscription: Subscription;
-  constructor(private FlashService: FlashService, private router: Router) {}
+  constructor(
+    private FlashService: FlashService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.routerSubscription = this.router.events.subscribe((e) => {
@@ -21,12 +24,13 @@ export class AppComponent implements OnInit, OnDestroy {
         this.FlashService.clearFlashMessage();
       }
     });
-    this.title = 'star-wars-master';
     this.flashSubscription = this.FlashService.flashSubject.subscribe(
       (flash) => {
         this.flash = flash;
       }
     );
+
+    this.title = 'star-wars-master';
   }
 
   ngOnDestroy() {
