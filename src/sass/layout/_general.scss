@@ -37,6 +37,11 @@ a {
   color: inherit !important;
 }
 
-// .active-link {
+.active-link {
+  text-decoration: underline !important;
+}
 
-// }
+.spinner {
+  margin: 0 auto;
+  display: block;
+}

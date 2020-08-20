@@ -43,14 +43,22 @@ export class ShipsComponent implements OnInit {
     if (message === 'FetchNext' && !this.fetching) {
       this.fetching = true;
       var url = this.lastResponse ? this.lastResponse['next'] : null;
-      this.shipsService.GetStarships(url).subscribe((response) => {
-        this.lastResponse = response;
-        this.starships = this.lastResponse['results'];
-        if (!response.next) {
-          this.disableButton = true;
-        }
-        this.fetching = false;
-      });
+      this.shipsService
+        .GetStarships(url)
+        .subscribe((response) => {
+          this.lastResponse = response;
+          this.starships = this.lastResponse['results'];
+          if (!response.next) {
+            this.disableButton = true;
+          }
+          this.fetching = false;
+        })
+        .add(() => {
+          if (this.fetching) {
+            this.fetching = false;
+            this.error = true;
+          }
+        });
     }
   }
 }

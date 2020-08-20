@@ -1,5 +1,19 @@
 <div class="col-md-6 col-md-offset-3">
-  <h2>Register</h2>
+  <div class="registerNav u-margin-bottom-medium">
+    <a
+      [routerLink]="['/login']"
+      routerLinkActive="active-link"
+      class="btn btn-link registerNav--link"
+      >Iniciar Sesión</a
+    >
+    <a
+      [routerLink]="['/register']"
+      routerLinkActive="active-link"
+      class="btn btn-link registerNav--link"
+      >Crear Cuenta</a
+    >
+  </div>
+  <h4 class="heading-4 u-margin-bottom-medium">Crear Cuenta</h4>
   <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
     <div
       class="form-group"
@@ -9,12 +23,13 @@
           registerForm.get('firstName')?.errors?.required
       }"
     >
-      <label for="username">First name</label>
+      <!-- <label for="username">First name</label> -->
       <input
         type="text"
         id="firstName"
         class="form-control"
         formControlName="firstName"
+        placeholder="Nombre *"
       />
       <span
         *ngIf="
@@ -22,7 +37,7 @@
           registerForm.get('firstName')?.errors?.required
         "
         class="help-block"
-        >First name is required</span
+        >El nombre es obligatorio</span
       >
     </div>
     <div
@@ -33,12 +48,13 @@
           registerForm.get('lastName')?.errors?.required
       }"
     >
-      <label for="username">Last name</label>
+      <!-- <label for="username">Last name</label> -->
       <input
         type="text"
         id="Text1"
         class="form-control"
         formControlName="lastName"
+        placeholder="Apellidos *"
       />
       <span
         *ngIf="
@@ -46,7 +62,7 @@
           registerForm.get('lastName')?.errors?.required
         "
         class="help-block"
-        >Last name is required</span
+        >Los apellidos son obligatorios</span
       >
     </div>
     <div
@@ -57,12 +73,13 @@
           registerForm.get('username')?.errors?.required
       }"
     >
-      <label for="username">Username</label>
+      <!-- <label for="username">Username</label> -->
       <input
         type="text"
         id="username"
         class="form-control"
         formControlName="username"
+        placeholder="Usuario"
       />
       <span
         *ngIf="
@@ -70,23 +87,24 @@
           registerForm.get('username')?.errors?.required
         "
         class="help-block"
-        >Username is required</span
+        >El nombre de usuario es obligatorio</span
       >
     </div>
     <div
-      class="form-group"
+      class="form-group u-margin-bottom-medium"
       [ngClass]="{
         'has-error':
           registerForm.get('password')?.dirty &&
           registerForm.get('password')?.errors?.required
       }"
     >
-      <label for="password">Password</label>
+      <!-- <label for="password">Password</label> -->
       <input
         type="password"
         id="password"
         class="form-control"
         formControlName="password"
+        placeholder="Contraseña *"
       />
       <span
         *ngIf="
@@ -94,26 +112,29 @@
           registerForm.get('password')?.errors?.required
         "
         class="help-block"
-        >Password is required</span
+        >La contraseña es obligatoria</span
       >
     </div>
-    <div class="form-actions">
+    <div class="form-actions register u-margin-bottom-medium">
       <button
         type="submit"
         [disabled]="registerForm.invalid || dataLoading"
-        class="btn btn-primary"
+        class="btn btn-primary register_button u-margin-bottom-medium"
       >
-        Register
+        Crear Cuenta
       </button>
       <img
         *ngIf="dataLoading"
         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
-      />
+        class="spinner"
+        />
+    </div>
+    <div class="login">
       <a
         [routerLink]="['/login']"
         routerLinkActive="active-link"
-        class="btn btn-link"
-        >Cancel</a
+        class="btn btn-link login_link"
+        >Iniciar Sesión</a
       >
     </div>
   </form>

@@ -1,0 +1,23 @@
+.register {
+  text-align: center;
+  &_link {
+    text-decoration: underline !important;
+  }
+}
+
+.login {
+  &_button {
+    width: 100%;
+    background-color: #b99d6b;
+    border: none;
+  }
+}
+
+.loginNav {
+  display: table;
+  width: 100%;
+  &--link {
+    display: table-cell;
+    text-align: center;
+  }
+}

@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FlashService } from './services/flash.service';
 import { Subscription } from 'rxjs';
 import { Router, NavigationStart } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,9 @@ export class AppComponent implements OnInit, OnDestroy {
   routerSubscription: Subscription;
   constructor(
     private FlashService: FlashService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService,
+    private AuthenticationService: AuthenticationService
   ) {}
 
   ngOnInit() {
@@ -29,7 +33,9 @@ export class AppComponent implements OnInit, OnDestroy {
         this.flash = flash;
       }
     );
-
+    const globalCookieString = this.cookieService.get('globals');
+    const globalCookie = globalCookieString ? JSON.parse(globalCookieString) : {};
+    this.AuthenticationService.globals = globalCookie;
     this.title = 'star-wars-master';
   }
 

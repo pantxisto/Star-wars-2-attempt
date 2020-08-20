@@ -1,0 +1,26 @@
+.register {
+  &_button {
+    width: 100%;
+    background-color: #b99d6b;
+    border: none;
+  }
+}
+
+.login {
+  &_link {
+    width: 100%;
+    background-color: black;
+    color: white !important;
+    border: none;
+    border-radius: 4px;
+  }
+}
+
+.registerNav {
+  display: table;
+  width: 100%;
+  &--link {
+    display: table-cell;
+    text-align: center;
+  }
+}
