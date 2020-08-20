@@ -12,9 +12,7 @@ export class StarshipsListComponent implements OnInit {
   @Output() fetchNext = new EventEmitter<string>();
   constructor() {}
 
-  ngOnInit(): void {
-    this.starships = [];
-  }
+  ngOnInit(): void {}
 
   fetchNextPage() {
     this.fetchNext.emit('FetchNext');

@@ -5,7 +5,7 @@ import {
   HttpEvent,
   HttpInterceptor,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import * as moment from 'moment';
 
@@ -18,14 +18,18 @@ export class AppInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     let modifiedReq;
-    const storedRequest = localStorage.getItem(request.url);
+    const globalCookie = this.cookieService.get('globals');
+    const parsedGlobalCookie = globalCookie ? JSON.parse(globalCookie) : {};
+    const requestId = request.url + JSON.stringify(parsedGlobalCookie['currentUser']);
+    const storedRequest = localStorage.getItem(requestId);
     const expirationDate = storedRequest
       ? moment(storedRequest).add(5, 'minutes')
       : null;
     if (expirationDate?.isBefore(moment()) || !storedRequest) {
-      localStorage.setItem(request.url, moment().toDate().toISOString());
-      const globalCookie = this.cookieService.get('globals');
-      const parsedGlobalCookie = globalCookie ? JSON.parse(globalCookie) : {};
+      localStorage.setItem(
+        requestId,
+        moment().toDate().toISOString()
+      );
       if (!parsedGlobalCookie['currentUser']) {
         modifiedReq = request.clone({
           headers: request.headers.set(
@@ -38,8 +42,9 @@ export class AppInterceptor implements HttpInterceptor {
           headers: request.headers.set('Authorization', 'Basic'),
         });
       }
-      console.log(modifiedReq);
       return next.handle(modifiedReq);
+    } else {
+      return EMPTY;
     }
   }
 }

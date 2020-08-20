@@ -53,7 +53,7 @@ export class StarshipModel {
     this.passengers = parseInt(passengers, 10);
     this.pilots = pilots;
     this.starship_class = starship_class;
-    this.url = url;
+    this.url = url.replace('http', 'https'); // Cors
     this.shipId = parseInt(
       url
         .split('/')

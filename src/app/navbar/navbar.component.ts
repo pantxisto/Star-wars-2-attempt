@@ -25,10 +25,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     const globalCookie = this.cookieService.get('globals');
     const parsedGlobalCookie = globalCookie ? JSON.parse(globalCookie) : {};
     if (!parsedGlobalCookie['currentUser']) {
-      console.log('false');
       this.isAuthenticated = false;
     } else {
-      console.log('true');
       this.isAuthenticated = true;
     }
   }

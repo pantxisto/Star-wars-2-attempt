@@ -1,0 +1,27 @@
+<mat-card class="example-card" *ngIf="!error">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ starship.name }}</mat-card-title>
+    <mat-card-subtitle>{{ starship.starship_class }}</mat-card-subtitle>
+  </mat-card-header>
+  <img
+    mat-card-image
+    [src]="
+      'https://starwars-visualguide.com/assets/img/starships/' +
+        starship.shipId +
+        '.jpg' | imageSanitizer
+    "
+    appShipImage
+  />
+  <mat-card-content>
+    <p>
+      {{ starship.manufacturer }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="btn btn-primary" (click)="goBack()">Atras</button>
+  </mat-card-actions>
+</mat-card>
+<div class="alert alert-danger" role="alert" *ngIf="error">
+  Ha habido un error al hacer la petición
+</div>

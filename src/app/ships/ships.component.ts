@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { StarshipModel } from './starships-list/starship/starship.model';
 import { ShipsService } from './services/ships.service';
-import { catchError } from 'rxjs/operators';
-import { of, Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ships',
@@ -15,7 +15,10 @@ export class ShipsComponent implements OnInit {
   lastResponse: {};
   disableButton: boolean;
   fetching: boolean;
-  constructor(private shipsService: ShipsService) {}
+  constructor(
+    private shipsService: ShipsService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.error;
@@ -23,70 +26,31 @@ export class ShipsComponent implements OnInit {
     this.lastResponse = {};
     this.disableButton = false;
     this.fetching = false;
-    this.shipsService
-      .GetStarships(null)
-      .pipe(catchError((error) => of({ error: true, message: error })))
-      .subscribe((response) => {
-        if (response['error']) {
-          this.error = true;
-        } else {
-          this.starships = this.starships.concat(
-            this.createStarshipsModelArray(response)
-          );
-          this.lastResponse = response;
-        }
-      });
+    const response = this.route.snapshot.data.response;
+    if (response) {
+      this.lastResponse = this.route.snapshot.data.response;
+      this.starships = this.lastResponse['results'];
+      if (!this.lastResponse['next']) {
+        this.disableButton = true;
+      }
+    } else {
+      this.error = true;
+      this.disableButton = true;
+    }
   }
 
   fetchNext(message: string) {
     if (message === 'FetchNext' && !this.fetching) {
       this.fetching = true;
       var url = this.lastResponse ? this.lastResponse['next'] : null;
-      this.shipsService
-        .GetStarships(url)
-        .pipe(catchError((error) => of({ error: true, message: error })))
-        .subscribe((response) => {
-          if (response['error']) {
-            this.error = true;
-          } else {
-            this.starships = this.starships.concat(
-              this.createStarshipsModelArray(response)
-            );
-            this.lastResponse = response;
-            if (response['next'] === null) {
-              this.disableButton = true;
-            }
-          }
-          this.fetching = false;
-        });
+      this.shipsService.GetStarships(url).subscribe((response) => {
+        this.lastResponse = response;
+        this.starships = this.lastResponse['results'];
+        if (!response.next) {
+          this.disableButton = true;
+        }
+        this.fetching = false;
+      });
     }
-  }
-
-  createStarshipsModelArray(data) {
-    const responseArray: StarshipModel[] = [];
-    data.results.forEach((result) => {
-      responseArray.push(
-        new StarshipModel(
-          result.MGLT,
-          result.cargo_capacity,
-          result.consumables,
-          result.cost_in_credits,
-          result.created,
-          result.crew,
-          result.edited,
-          result.films,
-          result.hyperdrive_rating,
-          result.length,
-          result.manufacturer,
-          result.model,
-          result.name,
-          result.passengers,
-          result.pilots,
-          result.starship_class,
-          result.url
-        )
-      );
-    });
-    return responseArray;
   }
 }
