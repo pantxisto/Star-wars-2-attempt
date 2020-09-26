@@ -3,6 +3,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShipsGuard } from './ships/ships.guard';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./ships/ships.module').then((m) => m.ShipsModule),
   },
+  { path: 'test', component: TestComponent },
   { path: '**', redirectTo: '/ships', pathMatch: 'full' },
 ];
 

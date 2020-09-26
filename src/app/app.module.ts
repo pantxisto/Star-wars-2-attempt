@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppInterceptor } from './app-interceptor.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
+    TestComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
   providers: [
