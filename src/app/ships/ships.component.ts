@@ -21,7 +21,7 @@ export class ShipsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.error;
+    this.error = false;
     this.starships = [];
     this.lastResponse = {};
     this.disableButton = false;
