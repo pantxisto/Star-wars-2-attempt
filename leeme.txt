@@ -1,0 +1,18 @@
+Hola, soy Jon Andoni Castelo y esta es la segunda prueba que accedo a hacer de Massimo Dutti. El feedback
+de la primera fué que no había sido lo suficiente buena y se podía mejorar. En esta segunda prueba he
+vuelto a leer el archivo README.md y he visto los mismos requisitos; añadí interceptors, resolvers, guards
+y otras funciones que pocos manejan para una app Angular. Si no sois mas específicos a la hora de pedirme
+que es lo que queréis que mejore, no puedo ayudaros.
+En esta nueva versión he añadido una  nueva página para poder navegar con el menú y he añadido un aviso
+dummie para mostrar cuando una misma petición se ha realizado mas de una vez dentro de un rango de 5
+minutos.
+Gracias por vuestro tiempo.
+
+Hello, I'm Jon Andoni Castelo and this is the second test that I agree to do about Massimo Dutti. Received
+feedback about the first test was that it had not been good enough and could be improved. In this second test I have
+I read again the README.md file and have seen the same requirements; I added interceptors, resolvers, guards
+and other functions that few people handle for an Angular app. If you are not more specific when asking me
+which is what you want me to improve, I can't help you.
+In this new version I have added a new page to navigate on the menu and I have added a dummie notice
+to show when the same request has been made more than once within a range of 5 minutes.
+Thanks for your time.
